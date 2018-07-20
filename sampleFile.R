@@ -18,13 +18,14 @@ tb_data <-
   )
 
 
+#gabudjgdfjdhmfftmjn
 #choose east African countries/ based on region
 East = c("Kenya", "Uganda")
-c_year = c(2016,2015,2014,2013,2010)
+c_year = c(2016,2015)
 
 
 country_data = subset(tb_data, year %in% c_year)
-country_data = subset(country_data, country == "Kenya")
+country_data = subset(country_data, country %in% East)
 
 
 country_data  = country_data[, c("country", "year", "e_pop_num", "e_inc_num","e_inc_num_hi")]
