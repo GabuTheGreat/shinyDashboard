@@ -1,5 +1,6 @@
 library(shiny)
 library(shinydashboard)
+library(plotly)
 
 shinyUI(dashboardPage(
   dashboardHeader(title = "WHO TB Burden Dashboard"),
@@ -34,13 +35,13 @@ shinyUI(dashboardPage(
           title = "Population Per Year",
           status = "primary",
           solidHeader = TRUE,
-          plotOutput("plot1", height = 300)
+          plotlyOutput("plot1", height = 400)
         ),
         box(
           title = "TB Occurance Per Year",
           status = "primary",
           solidHeader = TRUE,
-          plotOutput("plot2", height = 300)
+          plotlyOutput("plot2", height = 400)
         )
         
       )

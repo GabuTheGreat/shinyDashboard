@@ -2,6 +2,7 @@ library(shiny)
 library(shinydashboard)
 library(RCurl)
 library(ggplot2)
+library(plotly)
 
 #Read data from GitHub
 tb_data <-
@@ -80,9 +81,9 @@ shinyServer(function(input, output) {
   })
   
   
-  output$plot1 <- renderPlot({
+  output$plot1 <- renderPlotly({
     country_data = get_data()
-    ggplot(data = country_data, aes(x = year, y = e_pop_num / 100)) +
+    p= ggplot(data = country_data, aes(x = year, y = e_pop_num / 100)) +
       geom_line(linetype = "dashed", color = "#900C3F") +
       geom_point(color = "#900C3F") +
       labs(x = "Year", y = "Population in '000'") +
@@ -98,11 +99,12 @@ shinyServer(function(input, output) {
           size = 14
         )
       )
+    ggplotly(p) %>% config(displayModeBar = F)
   })
   
-  output$plot2 <- renderPlot({
+  output$plot2 <- renderPlotly({
     country_data = get_data()
-    ggplot(data = country_data, aes(x = year, y = e_inc_num)) +
+    p = ggplot(data = country_data, aes(x = year, y = e_inc_num)) +
       geom_line(linetype = "dashed", color = "#900C3F") +
       geom_point(color = "#900C3F") +
       labs(x = "Year", y = "All Incurrences of TB") +
@@ -118,5 +120,6 @@ shinyServer(function(input, output) {
           size = 14
         )
       )
+    ggplotly(p) %>% config(displayModeBar = F)
   })
 })
